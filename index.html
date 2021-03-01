@@ -13,25 +13,36 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light navbar-expand bg-light navigation-clean">
-        <div class="container"><a class="navbar-brand" href="#">pyurl.cc</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"></button>
+    <nav class="navbar navbar-light navbar-expand bg-light navigation-clean" style="height: 10vh">
+        <div class="container"><a class="navbar-brand" href="#">Pyurl.cc</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"></button>
             <div class="collapse navbar-collapse" id="navcol-1"></div>
         </div>
     </nav>
-    <header class="masthead text-white text-center">
-        <div class="overlay" style="background: #006dad;"></div>
+    <header class="masthead text-white text-center" style=" height: 90vh;">
+        <div class="overlay" style="background: #006dad; opacity:1;"></div>
         <div class="container">
-            <div class="row">
+            <div class="row" id="app">
                 <div class="col-xl-9 mx-auto">
-                    <h1 class="mb-5">Welcome to PyURL~<br>An easy tool to short your URL.</h1>
+                    <h2 v-if="finishShorten==false" class="mb-5">Welcome to PyURL~<br>An easy tool to short your URL.</h2>
+                    <h2 id="finish-msg" style="display:none" class="mb-5">Finish! <br>Thanks for your using.</h2>
                 </div>
                 <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                    <form>
+                    <div>
                         <div class="form-row">
-                            <div class="col-12 col-md-9 mb-2 mb-md-0"><input class="form-control form-control-lg" type="email" placeholder="URL to be shorten..."></div>
-                            <div class="col-12 col-md-3"><button class="btn btn-primary btn-block btn-lg" type="submit">Shorten</button></div>
+                            <div class="col-12 col-md-9 mb-2 mb-md-0">
+                                <input id="input_area" 
+                                 class="form-control form-control-lg"
+                                 type="" 
+                                 placeholder="URL to be shorten..."
+                                 v-model="url"
+                                 :disabled="finishShorten">
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <button v-if="finishShorten==false" class="btn btn-primary btn-block btn-lg" @click="shorten">Shorten</button>
+                                <button id="copy-button" style="display:none" class="btn btn-success btn-block btn-lg" @click="copyTextToClipboard">Copy</button>
+                            </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -54,10 +65,10 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+                    <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3" href="https://github.com/EasonC13/pyurl">
                         <div class="d-flex features-icons-icon"><i class="icon-social-github m-auto text-primary" data-bs-hover-animate="pulse"></i></div>
                         <h3>Open Source</h3>
-                        <p class="lead mb-0">Source code is on the Github Page.<br>You can build one by your own!</p>
+                        <p class="lead mb-0">Source code is avaliable on the <a href="https://github.com/EasonC13/pyurl" target="_blank">Github.</a><br>You can build one by your own!</p>
                     </div>
                 </div>
             </div>
@@ -66,6 +77,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/script.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="./app.js"></script>
 </body>
 
 </html>
