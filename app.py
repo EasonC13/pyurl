@@ -100,7 +100,7 @@ templates = Jinja2Templates(directory="templates")
 @app.get("/{shorten_url}", response_class=HTMLResponse)
 async def get_url(request: Request, shorten_url):
     if shorten_url == "":
-        return {"message": "Home page is still building..."}
+        return templates.TemplateResponse("Home.html")
     elif shorten_url == "favicon.ico":
         return "None"
     
