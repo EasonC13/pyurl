@@ -1,8 +1,8 @@
 import os
 
 #init db
-if os.path.isdir("./mongodb") == False:
-    os.mkdir("./mongodb")
+#if os.path.isdir("./mongodb") == False:
+#    os.mkdir("./mongodb")
 
 import subprocess
 import signal
@@ -10,7 +10,7 @@ import time
 
 
 commands = [
-    'mongod --port 14701 --bind_ip localhost --dbpath ./mongodb',
+    #'mongod --port 14701 --bind_ip localhost --dbpath ./mongodb',
     'uvicorn app:app --workers 4 --port 11133'
 ]
 # Command with shell expansion
