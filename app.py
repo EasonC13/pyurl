@@ -54,7 +54,7 @@ from typing import Optional
 
 class shorten_url_data(BaseModel):
     url: str
-    except_link: Optional[str] = None
+    #except_link: Optional[str] = None
 
 @app.post("/api/post/shorten_url/")
 async def shorten_url(data: shorten_url_data):
@@ -104,7 +104,10 @@ async def get_url(request: Request, shorten_url):
     elif shorten_url == "favicon.ico":
         return "None"
     
-    redirect_url = db_read_by_shorten_url(shorten_url)["origin_url"]
+    try:
+        redirect_url = db_read_by_shorten_url(shorten_url)["origin_url"]
+    except:
+        return "Invalid Link" #連結不存在
     
     if redirect_url:
         if re.search(pattern, request.headers["user-agent"]): #如果是機器人來抓網頁資訊
