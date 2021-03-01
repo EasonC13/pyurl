@@ -101,6 +101,8 @@ templates = Jinja2Templates(directory="templates")
 async def get_url(request: Request, shorten_url):
     if shorten_url == "":
         return {"message": "Home page is still building..."}
+    elif shorten_url == "favicon.ico":
+        return "None"
     
     redirect_url = db_read_by_shorten_url(shorten_url)["origin_url"]
     
