@@ -100,7 +100,7 @@ templates = Jinja2Templates(directory="templates")
 @app.get("/{shorten_url}", response_class=HTMLResponse)
 async def get_url(request: Request, shorten_url):
     if shorten_url == "":
-        return templates.TemplateResponse("Home.html")
+        return templates.TemplateResponse("Home.html", {"request": request})
     elif shorten_url == "favicon.ico":
         return "None"
     
@@ -115,7 +115,12 @@ async def get_url(request: Request, shorten_url):
 
         return templates.TemplateResponse("redir.html", {"request": request, "url": redirect_url})
 
+@app.get("/")
+async def get_homepage(request: Request):
+    return templates.TemplateResponse("Home.html", {"request": request})
 
+from fastapi.staticfiles import StaticFiles
+app.mount("/assets", StaticFiles(directory="assets"), name="assets")
 
 @app.get("/qrcode/")
 async def returnQrcode(request: Request, url: str ="Hi"):#token: str = Depends(oauth2_scheme)):
