@@ -64,7 +64,7 @@ async def shorten_url(data: shorten_url_data):
     try:
         requests.get(origin_url)
     except:
-        return {"message": "fail, please enter a valid url.",
+        return {"message": "fail, invalid url, please enter a valid url.",
                 "shorten_url": None,
                 "origin_url": origin_url}
     
