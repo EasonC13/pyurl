@@ -130,7 +130,7 @@ let vm = new Vue({
             }
 
             //check url is valid
-            postData('https://backend.pyurl.cc/api/post/shorten_url/', {url: vm.url})
+            postData('https://pyurl.cc/api/post/shorten_url/', {url: vm.url})
             .then(data => {
                 console.log(data)
 
