@@ -51,7 +51,7 @@
                                  type="" 
                                  placeholder="URL to be shortened..."
                                  v-model="url"
-                                 :disabled="finishShorten">
+                                 :disabled="finishShorten" ref="input_area">
                             </div>
                             <div class="col-12 col-md-3">
                                 <button v-if="finishShorten==false" class="btn btn-primary btn-block btn-lg" @click="shorten">Shorten</button>
@@ -120,7 +120,10 @@ function postData(url, data) {
 let vm = new Vue({
     el: "#app",
     created(){
-        console.log("QQ")
+        console.log("QQAA")
+    },
+    mounted(){
+        this.$refs.input_area.focus()
     },
     data: {
         url: "",
